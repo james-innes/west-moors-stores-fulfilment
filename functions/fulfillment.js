@@ -10,21 +10,20 @@ const d = d => ObjectId.createFromTime(getTime(sub(d, { weeks: 1 })) / 1000);
 
 exports.handler = async () => {
 	try {
-		const orders = await mongo.connect().then(() =>
-			mongo
-				.db("stores")
-				.collection("bha9r1zpbe6r8i5")
-				// Only get the previous weeks orders
-				// .find({
-				// 	_id: {
-				// 		$gte: d(startOfWeek(now, { weekStartsOn: 6 })),
-				// 		$lte: d(endOfWeek(now, { weekStartsOn: 6 })),
-				// 	},
-				// })
-				.find()
-				.toArray()
-				.then(r => r, mongo.close())
-		);
+		await mongo.connect();
+		const orders = await mongo
+			.db("bha9r1zpbe6r8i5")
+			.collection("order")
+			// Only get the previous weeks orders
+			// .find({
+			// 	_id: {
+			// 		$gte: d(startOfWeek(now, { weekStartsOn: 6 })),
+			// 		$lte: d(endOfWeek(now, { weekStartsOn: 6 })),
+			// 	},
+			// })
+			.find()
+			.toArray()
+			.then(r => r);
 
 		const purchase = Array.from(
 			orders
