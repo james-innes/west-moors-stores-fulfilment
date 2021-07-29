@@ -13,7 +13,7 @@ exports.handler = async () => {
 		const orders = await mongo.connect().then(() =>
 			mongo
 				.db("stores")
-				.collection("order")
+				.collection("bha9r1zpbe6r8i5")
 				// Only get the previous weeks orders
 				// .find({
 				// 	_id: {
